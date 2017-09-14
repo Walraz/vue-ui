@@ -27,10 +27,10 @@
       <dropdown position="insideLeft" :visible="showDropdown" v-if="type === 'date'">
         <datepicker @selected="onDatepickerSelected" v-model="inputValue" :disable-fn="disableFn" />
       </dropdown>
-      <dropdown :max-height="40 * 5 + 16" position="insideLeft" block :visible="showDropdown" v-if="type === 'select'">
+      <dropdown :max-height="40 * 5 + 16" position="insideLeft" full :visible="showDropdown" v-if="type === 'select'">
         <list :options="options" :padding="[8, null]">
           <template scope="prop">
-            <div v-class="[classes.dropdownItem, isSelected(prop.item) && classes.dropdownItemSelected]" @click="onDropdownSelected(prop.item)">{{ prop.item[display] }}</div>
+            <div v-class="[classes.dropdownItem, isSelected(prop.item) && classes.dropdownItemSelected]" @click="onDropdownSelected(prop.item)">{{ display ? prop.item[display] : prop.item }}</div>
           </template>
         </list>
       </dropdown>
@@ -76,7 +76,10 @@ export default {
   methods: {
     isSelected(item) {
       if (!this.value) return false
-      return item[this.select] === this.value
+      if (this.select) {
+        return item[this.select] === this.value
+      }
+      return item === this.value
     },
     onMousedown(e) {
       e.preventDefault()
@@ -100,8 +103,8 @@ export default {
       this.isFocused = false
     },
     onDropdownSelected(item) {
-      this.selectedValue = item[this.select]
-      this.inputValue = item[this.select]
+      this.selectedValue = this.select ? item[this.select] : item
+      this.inputValue = this.select ? item[this.select] : item
       this.$el.querySelector('input').blur()
       this.isFocused = false
     },
@@ -328,6 +331,7 @@ export default {
         },
         dropdownItemSelected: {
           color: this.$color.primary,
+          backgroundColor: this.$color.primaryLight,
         },
         disabledInput: {
           userSelect: 'none',
@@ -353,14 +357,8 @@ export default {
 
   props: {
     list: Boolean,
-    display: {
-      type: String,
-      default: () => 'label'
-    },
-    select: {
-      type: String,
-      default: () => 'label'
-    },
+    display: String,
+    select: String,
     validation: {
       type: Object,
       required: false,

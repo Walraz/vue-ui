@@ -64,7 +64,7 @@ export default {
         this.theme === 'outlined' && this.classes.outlined,
         this.theme === 'clear' && this.classes.clear,
         this.rounded && this.classes.rounded,
-        this.block && this.classes.block,
+        this.full && this.classes.block,
       ]
     },
 
@@ -206,7 +206,7 @@ export default {
     icon: String,
     submit: Boolean,
     rounded: Boolean,
-    block: Boolean,
+    full: Boolean,
     dark: Boolean,
     light: Boolean,
     size: Types.oneOf(['small', 'medium', 'large']).def('medium'),

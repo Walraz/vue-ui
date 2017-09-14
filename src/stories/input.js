@@ -67,7 +67,7 @@ storiesOf('Input', module).add('Input', () => ({
           <v-input label="Date" v-model="date" type="date" />
         </p>
         <p>
-        <v-input label="Select" v-model="selected" type="select" :options="items" />
+        <v-input label="Select" v-model="selected" type="select" display="label" select="value" :options="items" />
       </p>
             </div>`,
 }))

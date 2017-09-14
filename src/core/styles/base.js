@@ -39,18 +39,18 @@ export default {
   },
   'input:-webkit-autofill': {
     transition: 'background-color 5000s ease-in-out 0s',
-    WebkitBoxShadow: '0 0 0px 1000px #fff inset',
+    WebkitBoxShadow: '0 0 0px 1000px transparent inset',
   },
   'input:-webkit-autofill:hover': {
     transition: 'background-color 5000s ease-in-out 0s',
-    WebkitBoxShadow: '0 0 0px 1000px #fff inset',
+    WebkitBoxShadow: '0 0 0px 1000px transparent inset',
   },
   'input:-webkit-autofill:focus': {
     transition: 'background-color 5000s ease-in-out 0s',
-    WebkitBoxShadow: '0 0 0px 1000px #fff inset',
+    WebkitBoxShadow: '0 0 0px 1000px transparent inset',
   },
   'input:-webkit-autofill:active': {
     transition: 'background-color 5000s ease-in-out 0s',
-    WebkitBoxShadow: '0 0 0px 1000px #fff inset',
+    WebkitBoxShadow: '0 0 0px 1000px transparent inset',
   },
 }

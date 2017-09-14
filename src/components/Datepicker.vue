@@ -169,7 +169,7 @@ export default {
           outline: 'none',
           backgroundColor: '#fff',
           userSelect: 'none',
-          width: this.block ? '100%' : 284,
+          width: this.full ? '100%' : 284,
           height: 316,
           position: 'relative',
           top: 0,
@@ -313,7 +313,7 @@ export default {
       type: Function,
       default: () => false,
     },
-    block: Boolean,
+    full: Boolean,
     value: String,
   }
 }

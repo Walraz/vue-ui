@@ -18,7 +18,7 @@ storiesOf('Datepicker', module).add('Datepicker', () => ({
               <v-datepicker v-model="date" />
               </p>
               <p>
-              <v-datepicker block v-model="date" />
+              <v-datepicker full v-model="date" />
               </p>
             </div>`,
 }))

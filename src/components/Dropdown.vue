@@ -1,7 +1,7 @@
 <template>
-  <div v-class="[classes.root, block && classes.block]">
+  <div v-class="[classes.root, full && classes.block]">
     <v-transition name="fadeIn" :duration="420">
-      <div v-click-outside="hide" @click="closeClick" v-class="[classes.list, block && classes.listBlock]" v-show="isActive" data-dropdown>
+      <div v-click-outside="hide" @click="closeClick" v-class="[classes.list, full && classes.listBlock]" v-show="isActive" data-dropdown>
         <slot></slot>
       </div>
     </v-transition>
@@ -115,7 +115,7 @@ export default {
       type: [String, Number],
       default: () => 'auto',
     },
-    block: {
+    full: {
       type: Boolean,
       default: () => false,
     },

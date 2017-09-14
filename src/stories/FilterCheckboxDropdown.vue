@@ -3,15 +3,15 @@
     <v-btn rounded slot="dropdown" icon="filter_list" />
     <v-container :padding="[8, null]" background="#fff" column :width="180">
       <v-input list clear icon="filter_list" placeholder="Filter..." v-model="filter" />
-      <v-container block :padding="[null, 16]" v-if="!list.length">
+      <v-container full :padding="[null, 16]" v-if="!list.length">
         <v-text type="h6">
           <small>No results...</small>
         </v-text>
       </v-container>
       <v-list :options="list" :display="by">
         <template scope="prop">
-          <v-container @click="onClick(prop.item)" block :padding="[null, 16]" :height="40" align="center">
-            <v-checkbox block v-if="prop.item.hasOwnProperty(by)" :disabled="prop.item.disabled" :label="prop.item[by]" v-model="prop.item.selected" />
+          <v-container @click="onClick(prop.item)" full :padding="[null, 16]" :height="40" align="center">
+            <v-checkbox full v-if="prop.item.hasOwnProperty(by)" :disabled="prop.item.disabled" :label="prop.item[by]" v-model="prop.item.selected" />
           </v-container>
         </template>
       </v-list>

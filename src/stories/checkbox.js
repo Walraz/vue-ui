@@ -34,7 +34,7 @@ storiesOf('Checkbox', module).add('Checkbox', () => ({
   },
   template: `<div style="padding: 16px">
               <p>
-              <v-checkbox block label="Label" v-model="check" />
+              <v-checkbox full label="Label" v-model="check" />
               </p>
               <p>
               <v-checkbox disabled label="Label" v-model="check" />

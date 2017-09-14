@@ -100,8 +100,8 @@ storiesOf('Container', module).add('Containers', () => ({
   },
   template: `<div style="padding: 16px">
   <v-transition name="fadeInRight" appear>
-              <v-container :depth="1" :margin="[null ,null,8,null]" background="white" :border-radius="6" shadow="small" block align="center" justify="space-between">
-                <v-container block :padding="[null, 16]">
+              <v-container :depth="1" :margin="[null ,null,8,null]" background="white" :border-radius="6" shadow="small" full align="center" justify="space-between">
+                <v-container full :padding="[null, 16]">
                   <v-input @enter="click" icon="search" clear focused no-line v-model="text2" placeholder="Sök..." />
                 </v-container>
                 <v-container :border-radius="6" :min-width="64" :width="64" overflow="hidden">
@@ -111,7 +111,7 @@ storiesOf('Container', module).add('Containers', () => ({
               
               </v-transition>
 
-              <v-container wrap block :depth="1">
+              <v-container wrap full :depth="1">
 
               <v-transition name="fadeInLeft" appear>
                 <v-container  :margin="[8, 16, null, null]" shadow="medium">
@@ -123,7 +123,7 @@ storiesOf('Container', module).add('Containers', () => ({
 
             <v-transition name="fadeInBottom" appear>
               <v-container :depth="2" :border-radius="6" shadow="small" :margin="[8, 8, null, null]" background="white" column>
-              <v-container :depth="2" block :padding="[16, 16, 32, 16]" column>
+              <v-container :depth="2" full :padding="[16, 16, 32, 16]" column>
                 <v-text type="h5"><strong>Sign in</strong></v-text>
                 <v-container :depth="2" :width="320" :padding="[8, null]" column>
                   <v-input icon="date_range" type="date" v-model="date" label="Datum" />
@@ -135,8 +135,8 @@ storiesOf('Container', module).add('Containers', () => ({
                 <checkbox v-model="check" label="Remember me" />
                </v-container>
               </v-container>
-              <v-container shadow="small" block :depth="1">
-              <v-button @click="click" size="large" :loading="loading" block label="Sign in" />
+              <v-container shadow="small" full :depth="1">
+              <v-button @click="click" size="large" :loading="loading" full label="Sign in" />
               </v-container>
               </v-container>
             </v-transition>
@@ -148,7 +148,7 @@ storiesOf('Container', module).add('Containers', () => ({
           </v-transition>
 
               <v-transition name="fadeInTop" group>
-                <v-container v-if="show" block justify="flex-end" v-for="(n, i) in 4" :key="i" :data-index="i">
+                <v-container v-if="show" full justify="flex-end" v-for="(n, i) in 4" :key="i" :data-index="i">
                   <v-container :border-radius="2" align="center" :margin="[8, 8, null, null]" :padding="[16]" :border="[null,null,null,4]" :border-color="$color.successDark" :background="$color.success">
                     <v-container :padding="[null, 16, null, null]">
                       <v-icon size="large" :color="$color.successDarker" name="check_circle"></v-icon>
@@ -159,7 +159,7 @@ storiesOf('Container', module).add('Containers', () => ({
               </v-transition>
 
               <v-transition name="scaleIn" group>
-              <v-container v-if="show" block justify="flex-end" v-for="(n, i) in 4" :key="i" :data-index="i">
+              <v-container v-if="show" full justify="flex-end" v-for="(n, i) in 4" :key="i" :data-index="i">
                 <v-container :border-radius="2" align="center" :margin="[8, 8, null, null]" :padding="[16]" :border="[null,null,null,4]" :border-color="$color.infoDark" :background="$color.info">
                   <v-container :padding="[null, 16, null, null]">
                     <v-icon size="large" :color="$color.infoDarker" name="info"></v-icon>
@@ -170,7 +170,7 @@ storiesOf('Container', module).add('Containers', () => ({
             </v-transition>
 
             <v-transition name="fadeInLeft" group>
-            <v-container v-if="show" block justify="flex-end" v-for="(n, i) in 4" :key="i" :data-index="i">
+            <v-container v-if="show" full justify="flex-end" v-for="(n, i) in 4" :key="i" :data-index="i">
               <v-container :border-radius="2" align="center" :margin="[8, 8, null, null]" :padding="[16]" :border="[null,null,null,4]" :border-color="$color.warningDark" :background="$color.warning">
                 <v-container :padding="[null, 16, null, null]">
                   <v-icon size="large" :color="$color.warningDarker" name="priority_high"></v-icon>
@@ -181,7 +181,7 @@ storiesOf('Container', module).add('Containers', () => ({
           </v-transition>
 
           <v-transition name="fadeInRight" group>
-          <v-container v-if="show" block justify="flex-end" v-for="(n, i) in 4" :key="i" :data-index="i">
+          <v-container v-if="show" full justify="flex-end" v-for="(n, i) in 4" :key="i" :data-index="i">
             <v-container :border-radius="2" align="center" :margin="[8, 8, null, null]" :padding="[16]" :border="[null,null,null,4]" :border-color="$color.alertDark" :background="$color.alert">
               <v-container :padding="[null, 16, null, null]">
                 <v-icon size="large" :color="$color.alertDarker" name="warning"></v-icon>
@@ -194,14 +194,14 @@ storiesOf('Container', module).add('Containers', () => ({
         <v-transition name="fadeInBottom" appear>
         <v-container :border-radius="8" shadow="medium" :depth="1" v-if="showLogin" :width="320" :padding="[16]" :margin="[8, 8, null, null]" background="#fff" column>
         <h2>Sign in</h2>
-        <v-container block :padding="[8, null]" column>
+        <v-container full :padding="[8, null]" column>
           <v-input required :validation="$v.username" icon="account_box" clear v-model="username" :maxlength="5" label="Username" />
         </v-container>
-        <v-container block :padding="[8, null]" column>
+        <v-container full :padding="[8, null]" column>
           <v-input required icon="lock" type="password" visibility v-model="text2" counter="10" label="Password" />
         </v-container>
-        <v-container block :padding="[16, null, null, null]" column>
-          <v-button rounded @click="click" :loading="loading" block label="Sign in" />
+        <v-container full :padding="[16, null, null, null]" column>
+          <v-button rounded @click="click" :loading="loading" full label="Sign in" />
         </v-container>
       </v-container>
       </v-transition>

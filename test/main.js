@@ -4,7 +4,7 @@ import App from './App.vue'
 
 Vue.use(UI, {
   theme: {
-    primary: '#fc644d',
+    primary: '#30cd84',
   },
 })
 

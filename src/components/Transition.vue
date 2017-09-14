@@ -14,11 +14,11 @@ export default {
     },
     duration: {
       type: Number,
-      default: () => 315,
+      default: () => 245,
     },
     delay: {
       type: Number,
-      default: () => 105,
+      default: () => 15,
     }
   },
 

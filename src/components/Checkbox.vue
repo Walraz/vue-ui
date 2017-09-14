@@ -55,8 +55,8 @@ export default {
         root: {
           alignItems: 'center',
           position: 'relative',
-          display: this.block ? 'flex' : 'inline-flex',
-          width: this.block ? '100%' : 'auto',
+          display: this.full ? 'flex' : 'inline-flex',
+          width: this.full ? '100%' : 'auto',
         },
 
         checkboxContainer: {
@@ -128,7 +128,7 @@ export default {
   },
 
   props: {
-    block: Boolean,
+    full: Boolean,
     label: String,
     required: Boolean,
     disabled: Boolean,

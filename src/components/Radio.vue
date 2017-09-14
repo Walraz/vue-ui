@@ -46,10 +46,10 @@ export default {
     styles() {
       return {
         root: {
-          display: this.block ? 'flex' : 'inline-flex',
+          display: this.full ? 'flex' : 'inline-flex',
           alignItems: 'center',
           position: 'relative',
-          width: this.block ? '100%' : 'auto',
+          width: this.full ? '100%' : 'auto',
         },
 
         radioContainer: {
@@ -127,7 +127,7 @@ export default {
   },
 
   props: {
-    block: Boolean,
+    full: Boolean,
     select: String,
     label: String,
     required: Boolean,

@@ -2,7 +2,7 @@
   <div v-if="!form" @click="$emit('click', $event)" v-class="containerClass">
     <slot></slot>
   </div>
-  <form v-else @submit.prevent="form" v-class="containerClass">
+  <form v-else autocomplete="off" @submit.prevent="form" v-class="containerClass">
     <slot></slot>
   </form>
 </template>
@@ -19,7 +19,7 @@ export default {
       return [
         this.classes.root,
         this.shadow && this.classes.shadow,
-        this.block && this.classes.block,
+        this.full && this.classes.block,
       ]
     },
 
@@ -35,11 +35,11 @@ export default {
           maxWidth: this.maxWidth,
           maxHeight: this.maxHeight,
           backgroundColor: this.background,
-          display: 'inline-flex',
+          display: this.block ? 'inline-block' : 'inline-flex',
           flexWrap: this.wrap ? 'wrap' : 'nowrap',
           borderStyle: 'solid',
           borderWidth: 0,
-          flexGrow: this.flex,
+          flexGrow: this.flexGrow,
           flexDirection: this.column ? 'column' : 'row',
           justifyContent: this.column ? this.align : this.justify,
           alignItems: this.column ? this.justify : this.align,
@@ -54,7 +54,8 @@ export default {
 
         block: {
           width: '100%',
-          display: 'flex',
+          display: this.block ? 'block' : 'flex',
+          flexGrow: 1,
         },
         shadow: {
           boxShadow: this.$shadow[this.shadow]
@@ -82,7 +83,8 @@ export default {
     height: [String, Number],
     width: [String, Number],
     wrap: Types.bool.def(false),
-    flex: Types.number.def(0),
+    flexGrow: Types.number.def(0),
+    block: Boolean,
     background: Types.string.def('transparent'),
     position: Types.array.def(['relative', 0, 0]),
     padding: Types.array,
@@ -94,7 +96,7 @@ export default {
     column: Boolean,
     align: Types.string.def('flex-start'),
     justify: Types.string.def('flex-start'),
-    block: Boolean,
+    full: Boolean,
     depth: Types.number.def(0),
     form: Function,
   }
