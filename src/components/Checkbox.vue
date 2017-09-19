@@ -76,7 +76,7 @@ export default {
           height: 16,
           width: 16,
           borderWidth: 2,
-          borderColor: this.disabled ? this.$color.dark(.2) : this.inputValue ? this.$color.primary : this.$color.dark(.4),
+          borderColor: this.dark ? this.disabled ? this.$color.light(.2) : this.inputValue ? this.$color.primary : this.$color.light(.6) : this.disabled ? this.$color.dark(.2) : this.inputValue ? this.$color.primary : this.$color.dark(.4),
           borderStyle: 'solid',
           borderRadius: 2,
         },
@@ -98,7 +98,7 @@ export default {
         },
 
         label: {
-          color: this.disabled ? this.$color.dark(.4) : '#000',
+          color: this.dark ? this.disabled ? this.$color.light(.2) : this.$color.light(.8) : this.disabled ? this.$color.dark(.4) : '#000',
           fontSize: 14,
           fontWeight: 400,
           userSelect: 'none',
@@ -128,6 +128,7 @@ export default {
   },
 
   props: {
+    dark: Boolean,
     full: Boolean,
     label: String,
     required: Boolean,

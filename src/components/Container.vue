@@ -69,8 +69,14 @@ export default {
       type: String,
       default: () => '#000',
     },
-    minHeight: Types.number.def(0),
-    minWidth: Types.number.def(0),
+    minHeight: {
+      type: [String, Number],
+      default: () => 0,
+    },
+    minWidth: {
+      type: [String, Number],
+      default: () => 0,
+    },
     maxHeight: {
       type: [String, Number],
       default: () => '100%',

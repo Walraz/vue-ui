@@ -11,6 +11,8 @@ import Spinner from './Spinner.vue'
 import Text from './Text.vue'
 import Transition from './Transition.vue'
 import Toolbar from './Toolbar.vue'
+import Divider from './Divider.vue'
+import Expansion from './Expansion.vue'
 
 export default {
   Button,
@@ -26,4 +28,6 @@ export default {
   Text,
   Transition,
   Toolbar,
+  Divider,
+  Expansion,
 }

@@ -20,6 +20,9 @@ export default {
         this.weight === 'light' && this.classes.light,
         this.weight === 'thin' && this.classes.thin,
         this.weight === 'black' && this.classes.black,
+        this.noMargin && this.classes.noMargin,
+        this.uppercase && this.classes.uppercase,
+        this.letterSpacing && this.classes.letterSpacing,
       ]
     },
     textClass() {
@@ -30,11 +33,14 @@ export default {
         this.weight === 'light' && this.classes.light,
         this.weight === 'thin' && this.classes.thin,
         this.weight === 'black' && this.classes.black,
+        this.uppercase && this.classes.uppercase,
+        this.letterSpacing && this.classes.letterSpacing,
       ]
     },
     styles() {
       return {
         text: {
+          display: 'inline-block',
           letterSpacing: 0,
           lineHeight: '24px',
           marginLeft: this.offset,
@@ -44,6 +50,7 @@ export default {
         },
         paragraph: {
           margin: '0 0 1rem',
+          display: 'block',
         },
         header: {
           display: 'block',
@@ -98,12 +105,21 @@ export default {
         },
         uppercase: {
           textTransform: 'uppercase',
+        },
+        noMargin: {
+          margin: 0,
+        },
+        letterSpacing: {
+          letterSpacing: this.letterSpacing
         }
       }
     },
   },
 
   props: {
+    letterSpacing: Number,
+    uppercase: Boolean,
+    noMargin: Boolean,
     offset: Type.number.def(0),
     color: Type.string.def('inherit'),
     weight: Type.oneOf(['thin', 'light', 'black']),

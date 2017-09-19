@@ -7,13 +7,19 @@
 <script>
 const iconSize = {
   small: {
-    fontSize: 12
+    fontSize: 12,
+    width: 12,
+    height: 12,
   },
   medium: {
-    fontSize: 18
+    fontSize: 18,
+    width: 18,
+    height: 18,
   },
   large: {
-    fontSize: 24
+    fontSize: 24,
+    width: 24,
+    height: 24,
   },
 }
 

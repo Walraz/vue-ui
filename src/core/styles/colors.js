@@ -3,8 +3,8 @@ import { shade, tint } from 'polished'
 const colors = {
   // primary: 'rgb(12, 47, 251)',
   primary: 'rgba(159, 38, 255, 1.00)',
-  dark: opacity => `rgba(0,0,0,${opacity})`,
-  light: opacity => `rgba(255,255,255,${opacity})`,
+  darkColor: '#111',
+  lightColor: '#fff',
   success: 'rgba(19, 206, 102, 1.00)',
   info: 'rgba(33, 150, 243, 1.00)',
   warning: 'rgba(255, 193, 7, 1.00)',
@@ -30,5 +30,10 @@ export default theme => {
 
     alertDark: shade(0.8, themeColors.alert),
     alertDarker: shade(0.6, themeColors.alert),
+
+    dark: opacity =>
+      opacity ? `rgba(0,0,0,${opacity})` : themeColors.darkColor,
+    light: opacity =>
+      opacity ? `rgba(255,255,255,${opacity})` : themeColors.lightColor,
   }
 }

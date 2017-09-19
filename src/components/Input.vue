@@ -128,10 +128,10 @@ export default {
 
   computed: {
     iconColor() {
-      if (this.disabled) return this.$color.dark(.2)
+      if (this.disabled) return this.dark ? this.$color.light(.2) : this.$color.dark(.2)
       if (this.isError) return this.$color.alert
       if (this.isFocused) return this.$color.primary
-      return this.$color.dark(.6)
+      return this.dark ? this.$color.light(.5) : this.$color.dark(.6)
     },
     isError() {
       if (this.validation) {
@@ -194,7 +194,7 @@ export default {
         },
         label: {
           fontSize: 16,
-          color: this.disabled ? this.$color.dark(.2) : this.$color.dark(.6),
+          color: this.dark ? this.disabled ? this.$color.light(.2) : this.$color.light(.6) : this.disabled ? this.$color.dark(.2) : this.$color.dark(.6),
           transition: 'transform .32s cubic-bezier(.25,.8,.25,1)',
           position: 'absolute',
           transform: `translate3d(0, 0, 0) scale(1)`,
@@ -206,7 +206,7 @@ export default {
         },
         labelFloat: {
           transform: `translate3d(0, ${this.noLine ? '-14px' : '-14px'}, 0) scale(.7)`,
-          color: this.disabled ? this.$color.dark(.2) : this.isError ? this.$color.alert : this.$color.dark(.6),
+          color: this.dark ? this.disabled ? this.$color.light(.2) : this.isError ? this.$color.alert : this.$color.light(.6) : this.disabled ? this.$color.dark(.2) : this.isError ? this.$color.alert : this.$color.dark(.6),
         },
         labelActive: {
           color: this.isError ? this.$color.alert : this.$color.primary
@@ -227,7 +227,7 @@ export default {
           lineHeight: '12px',
           right: 0,
           fontSize: 12,
-          color: this.$color.dark(.5),
+          color: this.dark ? this.$color.light(.6) : this.$color.dark(.5),
           transition: 'color .32s cubic-bezier(.25,.8,.25,1)',
         },
         maxlengthError: {
@@ -254,14 +254,14 @@ export default {
           height: this.noLine ? 20 : 24,
           width: '100%',
           fontSize: 16,
-          color: '#000',
+          color: this.dark ? '#fff' : '#000',
           caretColor: this.$color.primary,
           outline: 'none',
           paddingLeft: this.list ? this.icon ? 48 : 24 : this.icon ? 24 : 0,
           borderTop: 0,
           borderLeft: 0,
           borderRight: 0,
-          borderBottom: this.noLine ? 0 : `1px solid ${this.$color.dark(.2)}`,
+          borderBottom: this.noLine ? 0 : `1px solid ${this.dark ? this.$color.light(.6) : this.$color.dark(.2)}`,
           transition: 'border .145s cubic-bezier(.25, .8, .25, 1)',
         },
         selectInput: {
@@ -336,19 +336,19 @@ export default {
         disabledInput: {
           userSelect: 'none',
           pointerEvents: 'none',
-          color: this.$color.dark(.2),
-          borderBottom: this.noLine ? 0 : `1px dotted ${this.$color.dark(.2)}`,
+          color: this.dark ? this.$color.light(.2) : this.$color.dark(.2),
+          borderBottom: this.noLine ? 0 : `1px dotted ${this.dark ? this.$color.light(.2) : this.$color.dark(.2)}`,
           '::-webkit-input-placeholder': {
-            color: this.$color.dark(.2),
+            color: this.dark ? this.$color.light(.2) : this.$color.dark(.2),
           },
           ':-moz-placeholder': {
-            color: this.$color.dark(.2),
+            color: this.dark ? this.$color.light(.2) : this.$color.dark(.2),
           },
           '::-moz-placeholder': {
-            color: this.$color.dark(.2),
+            color: this.dark ? this.$color.light(.2) : this.$color.dark(.2),
           },
           ':-ms-input-placeholder': {
-            color: this.$color.dark(.2),
+            color: this.dark ? this.$color.light(.2) : this.$color.dark(.2),
           },
         }
       }
@@ -356,6 +356,7 @@ export default {
   },
 
   props: {
+    dark: Boolean,
     list: Boolean,
     display: String,
     select: String,

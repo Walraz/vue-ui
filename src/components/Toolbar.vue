@@ -1,5 +1,5 @@
 <template>
-  <v-container :max-height="toolbarSize[this.size].height" :min-height="toolbarSize[this.size].height" justify="space-between" :border="border ? [null, null, 1, null] : [null]" :shadow="shadow ? 'small' : 'none'" :background="$color.primary" full :height="toolbarSize[this.size].height">
+  <v-container :depth="2" :max-height="toolbarSize[this.size].height" :min-height="toolbarSize[this.size].height" justify="space-between" :border="border ? [null, null, 1, null] : [null]" :shadow="shadow ? 'small' : 'none'" :background="$color.primary" full :height="toolbarSize[this.size].height">
     <v-container justify="flex-start" align="center" height="100%" :padding="[null, 24]">
       <slot name="right"></slot>
     </v-container>

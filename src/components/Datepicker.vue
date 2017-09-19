@@ -5,7 +5,7 @@
         <v-btn :tabindex="-1" icon="keyboard_arrow_left" theme="clear" @click="prevMonth">
         </v-btn>
 
-        <transition :name="fadePos" mode="out-in">
+        <v-transition :name="fadePos" :duration="145">
           <div v-class="classes.dateContainer" :key="months[month]">
             <span>{{ months[month] }}</span>
 
@@ -13,14 +13,14 @@
               <span>{{ year }}</span>
             </div>
           </div>
-        </transition>
+        </v-transition>
 
         <v-btn :tabindex="-1" icon="keyboard_arrow_right" theme="clear" @click="nextMonth">
         </v-btn>
       </div>
     </div>
 
-    <transition name="fadeTop" mode="out-in" @enter="openYearSelect">
+    <v-transition :duration="245" :name="fadePos" @enter="openYearSelect">
       <div v-if="!viewYears" v-class="classes.daysContainer" :key="months[month]">
         <div v-class="classes.weekdayContainer">
           <div v-class="classes.weekday" v-for="d in days" :key="d">{{ d }}</div>
@@ -32,13 +32,14 @@
       <div v-else v-class="classes.yearContainer" :key="viewYears">
         <div :data-year="y" :tabindex="-1" @mousedown="onMouseDown" @click="selectYear(y)" v-class="[classes.yearRow, (y == year) && classes.yearRowSelected]" v-for="y in years" :key="y">{{ y }}</div>
       </div>
-    </transition>
+    </v-transition>
   </div>
 </template>
 
 <script>
 import calendarMatrix from 'calendar-matrix'
 import Button from './Button.vue'
+import Transition from './Transition.vue'
 const months = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December']
 const days = ['Mån', 'Tis', 'Ons', 'Tor', 'Fre', 'Lör', 'Sön']
 const calendar = {
@@ -51,6 +52,7 @@ export default {
   name: 'datepicker',
 
   components: {
+    'v-transition': Transition,
     'v-btn': Button,
   },
 
@@ -58,7 +60,7 @@ export default {
     return {
       viewYears: false,
       years: [],
-      fadePos: 'fadeLeft',
+      fadePos: 'fadeInLeft',
       months,
       days,
       ...calendar,
@@ -102,7 +104,7 @@ export default {
       this.viewYears = false
     },
     prevMonth() {
-      this.fadePos = 'fadeLeft'
+      this.fadePos = 'fadeInLeft'
       if (this.month - 1 < 0) {
         this.month = 11
         this.year--
@@ -111,7 +113,7 @@ export default {
       }
     },
     nextMonth() {
-      this.fadePos = 'fadeRight'
+      this.fadePos = 'fadeInRight'
       if (this.month + 1 > 11) {
         this.month = 0
         this.year++
@@ -167,7 +169,7 @@ export default {
       return {
         root: {
           outline: 'none',
-          backgroundColor: '#fff',
+          backgroundColor: this.dark ? this.$color.dark() : '#fff',
           userSelect: 'none',
           width: this.full ? '100%' : 284,
           height: 316,
@@ -199,7 +201,8 @@ export default {
           fontWeight: 300,
           letterSpacing: -.5,
           fontSize: 16,
-          backgroundColor: '#fff',
+          color: this.dark ? '#fff' : '#000',
+          backgroundColor: this.dark ? this.$color.dark() : '#fff',
           transition: 'background .145s ease',
           ':hover': {
             backgroundColor: this.$color.dark(.05),
@@ -228,9 +231,9 @@ export default {
           minWidth: 36,
           fontSize: 12,
           fontWeight: 400,
-          backgroundColor: '#fff',
+          backgroundColor: this.dark ? this.$color.dark() : '#fff',
           cursor: 'pointer',
-          color: '#000',
+          color: this.dark ? this.$color.light(.6) : this.$color.dark(.6),
           borderRadius: 9999,
           transition: 'all, .145s ease',
           ':hover': {
@@ -254,7 +257,7 @@ export default {
           opacity: .2,
         },
         noDay: {
-          backgroundColor: '#fff',
+          backgroundColor: this.dark ? this.$color.dark() : '#fff',
           cursor: 'default',
           pointerEvents: 'none',
         },
@@ -265,7 +268,7 @@ export default {
           paddingRight: 16,
         },
         weekday: {
-          color: this.$color.dark(.4),
+          color: this.dark ? this.$color.light(.8) : this.$color.dark(.4),
           fontWeight: 700,
           textTransform: 'uppercase',
           fontSize: 10,
@@ -309,6 +312,7 @@ export default {
   },
 
   props: {
+    dark: Boolean,
     disableFn: {
       type: Function,
       default: () => false,
@@ -318,41 +322,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.fadeLeft-enter-active,
-.fadeLeft-leave-active {
-  will-change: transform;
-  transition: all .15s cubic-bezier(.25, .8, .25, 1);
-}
-
-.fadeLeft-enter,
-.fadeLeft-leave-active {
-  opacity: 0;
-  transform: translateX(-16px);
-}
-
-.fadeRight-enter-active,
-.fadeRight-leave-active {
-  will-change: transform;
-  transition: all .15s cubic-bezier(.25, .8, .25, 1);
-}
-
-.fadeRight-enter,
-.fadeRight-leave-active {
-  opacity: 0;
-  transform: translateX(16px);
-}
-
-.fadeTop-enter-active,
-.fadeTop-leave-active {
-  will-change: transform;
-  transition: all .15s cubic-bezier(.25, .8, .25, 1);
-}
-
-.fadeTop-enter,
-.fadeTop-leave-active {
-  opacity: 0;
-  transform: translateY(-16px);
-}
-</style>
